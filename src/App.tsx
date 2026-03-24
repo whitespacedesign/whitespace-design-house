@@ -16,9 +16,9 @@ import {
 
 const personalInfo = {
   name: "Swarali Devi",
-  company: "Whitespace Designs House",
+  company: "Whitespace Design House",
   shortTagline: "Clarity, focus, and meaning in design.",
-  description: "In a world full of visual noise, whitespace brings clarity, focus, and meaning — guiding attention to what truly matters. Built on this philosophy, Whitespace Designs House. delivers precise, insight driven design solutions that cut through clutter and communicate with purpose. Every brand is shaped with intention, giving it the space to stand out, connect meaningfully, and be remembered.",
+  description: "In a world full of visual noise, whitespace brings clarity, focus, and meaning — guiding attention to what truly matters. Built on this philosophy, Whitespace Design House delivers precise, insight driven design solutions that cut through clutter and communicate with purpose. Every brand is shaped with intention, giving it the space to stand out, connect meaningfully, and be remembered.",
   services: [
     "Brand Identity System",
     "Packaging",
@@ -121,7 +121,7 @@ export default function App() {
           >
             <img 
               src="/logo.png" 
-              alt="Whitespace Designs House. Logo" 
+              alt="Whitespace Design House Logo" 
               className="w-full h-auto object-contain mix-blend-multiply"
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
@@ -210,7 +210,7 @@ export default function App() {
               <p className="mt-1">Founder & Creative Director</p>
             </div>
             <div className="w-12 h-px bg-black/10 mx-auto mb-3"></div>
-            <p>© 2026 Whitespace Designs House. All rights reserved.</p>
+            <p>© 2026 Whitespace Design House All rights reserved.</p>
           </FadeIn>
         </footer>
 
