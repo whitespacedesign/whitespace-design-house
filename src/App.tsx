@@ -282,7 +282,7 @@ export default function App() {
 
               <div className="flex justify-center bg-white p-4 rounded-2xl border border-black/5 shadow-sm mb-6">
                 <QRCodeSVG 
-                  value={currentUrl || "https://whitespacedesigns.co"} 
+                  value={currentUrl || "https://whitespacedesignhouse.vercel.app/"} 
                   size={200}
                   level="H"
                   includeMargin={false}
