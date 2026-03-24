@@ -109,7 +109,7 @@ export default function App() {
         </button>
       </header>
 
-      <main className="max-w-2xl mx-auto px-6">
+      <main className="max-w-3xl mx-auto px-6">
         
         {/* Hero Section */}
         <section className="pt-20 pb-32 flex justify-center">
