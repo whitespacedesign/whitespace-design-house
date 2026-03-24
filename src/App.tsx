@@ -28,7 +28,7 @@ const personalInfo = {
   phone: "+919529134102", 
   email: "whitespace.dh@gmail.com", 
   whatsapp: "+919529134102", 
-  instagram: "https://instagram.com/",
+  instagram: "",
   maps: "https://maps.google.com/",
   drive: "https://drive.google.com/drive/folders/1NmoccNaKJ-aAV8nRDG1pdG-Gd2wiTo0C?usp=drive_link"
 };
@@ -112,12 +112,12 @@ export default function App() {
       <main className="max-w-3xl mx-auto px-6">
         
         {/* Hero Section */}
-        <section className="pt-20 pb-32 flex justify-center">
+        <section className="pt-8 pb-8 flex justify-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="w-full max-w-sm md:max-w-md"
+            className="w-full max-w-xl md:max-w-3xl"
           >
             <img 
               src="/logo.png" 
@@ -136,7 +136,7 @@ export default function App() {
         </section>
 
         {/* About Section */}
-        <section className="py-20 border-t border-black/10">
+        <section className="py-12 border-t border-black/10">
           <FadeIn>
             <h2 className="text-xs font-semibold tracking-widest uppercase text-black mb-8">About</h2>
             <p className="text-sm md:text-base leading-relaxed font-light text-black/50">
@@ -146,7 +146,7 @@ export default function App() {
         </section>
 
         {/* Services Section */}
-        <section className="py-20 border-t border-black/10">
+        <section className="py-12 border-t border-black/10">
           <FadeIn>
             <h2 className="text-xs font-semibold tracking-widest uppercase text-black mb-8">Services</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -167,7 +167,7 @@ export default function App() {
         </section>
 
         {/* Connect Section */}
-        <section className="pt-20 pb-12 border-t border-black/10">
+        <section className="pt-12 pb-12 border-t border-black/10">
           <FadeIn>
             <h2 className="text-xs font-semibold tracking-widest uppercase text-black mb-8">Connect with us</h2>
             <div className="grid grid-cols-2 gap-4">
