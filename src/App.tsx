@@ -18,7 +18,7 @@ const personalInfo = {
   name: "Swarali Devi",
   company: "Whitespace Design House",
   shortTagline: "Clarity, focus, and meaning in design.",
-  description: "In a world full of visual noise, whitespace brings clarity, focus, and meaning — guiding attention to what truly matters. Built on this philosophy, Whitespace Design House delivers precise, insight driven design solutions that cut through clutter and communicate with purpose. Every brand is shaped with intention, giving it the space to stand out, connect meaningfully, and be remembered.",
+  description: "In a world full of visual noise, whitespace brings clarity, focus, and meaning,guiding attention to what truly matters. Built on this philosophy, Whitespace Design House delivers precise, insight driven design solutions that cut through clutter and communicate with purpose. Every brand is shaped with intention, giving it the space to stand out, connect meaningfully, and be remembered.",
   services: [
     "Brand Identity System",
     "Packaging",
