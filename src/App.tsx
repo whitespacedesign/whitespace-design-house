@@ -28,7 +28,7 @@ const personalInfo = {
   phone: "+919529134102", 
   email: "whitespace.dh@gmail.com", 
   whatsapp: "+919529134102", 
-  instagram: "",
+  instagram: "https://www.instagram.com/whitespace_designhouse?igsh=OTUycWl4MnBrd3oy&utm_source=qr",
   maps: "https://maps.google.com/",
   drive: "https://drive.google.com/drive/folders/1NmoccNaKJ-aAV8nRDG1pdG-Gd2wiTo0C?usp=drive_link"
 };
