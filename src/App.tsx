@@ -120,7 +120,7 @@ export default function App() {
               }}
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
-              className="w-full aspect-[1.58/1] max-w-md relative select-none cursor-pointer group"
+              className="w-full aspect-[1.58/1] max-w-xl relative select-none cursor-pointer group"
             >
               <AnimatePresence>
                 {!isCardFlipped && (
@@ -128,7 +128,7 @@ export default function App() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0, transition: { delay: 1 } }}
                     exit={{ opacity: 0, scale: 0.9, y: 10, transition: { duration: 0.2 } }}
-                    className="absolute -top-12 right-0 bg-black text-white text-[10px] sm:text-xs font-medium tracking-wide px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg z-10"
+                    className="absolute -top-12 left-0 bg-black text-white text-[10px] sm:text-xs font-medium tracking-wide px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg z-10"
                   >
                     <motion.div 
                       animate={{ scale: [1, 1.2, 1] }} 
@@ -137,7 +137,7 @@ export default function App() {
                       <MousePointerClick className="w-3.5 h-3.5" />
                     </motion.div>
                     Click to flip
-                    <div className="absolute -bottom-1 right-6 w-2 h-2 bg-black rotate-45" />
+                    <div className="absolute -bottom-1 left-6 w-2 h-2 bg-black rotate-45" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -165,7 +165,7 @@ export default function App() {
                   >
                     <Share2 className="w-4 h-4 sm:w-5 sm:h-5" />
                   </button>
-                  <div className="absolute -bottom-8 -left-8 sm:-bottom-10 sm:-left-10 w-64 h-64 sm:w-80 sm:h-80">
+                  <div className="absolute -bottom-8 -left-8 sm:-bottom-10 sm:-left-10 md:-bottom-12 md:-left-12 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96">
                     <img 
                       src="/logo.png" 
                       alt="Logo" 
@@ -193,7 +193,7 @@ export default function App() {
                 >
                   <div className="flex-1 p-6 sm:p-8 pb-8 flex flex-col items-start justify-start w-full relative">
                     <div className="w-full flex justify-between items-start">
-                    <div className="w-[160px] h-[90px] pr-2 -ml-[17px] -mt-[14px] relative">
+                    <div className="w-[160px] h-[90px] sm:w-[210px] sm:h-[118px] pr-2 -ml-[17px] -mt-[14px] sm:-ml-[24px] sm:-mt-[20px] relative">
                       <img 
                         src="/swarali%20info.png" 
                         alt="Swarali Info" 
@@ -217,10 +217,10 @@ export default function App() {
                         href={`tel:${personalInfo.phone}`}
                         className="flex flex-col items-center gap-1 group/btn"
                       >
-                        <div className="w-8 h-8 rounded-full bg-[#111] text-white group-hover/btn:bg-black/5 group-hover/btn:text-black flex items-center justify-center transition-all duration-200">
-                          <Phone className="w-4 h-4" />
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#111] text-white group-hover/btn:bg-black/5 group-hover/btn:text-black flex items-center justify-center transition-all duration-200">
+                          <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
                         </div>
-                        <span className="text-[6px] sm:text-[7px] font-semibold text-black/60 group-hover/btn:text-black transition-colors uppercase tracking-wider">Call</span>
+                        <span className="text-[6px] sm:text-[8px] font-semibold text-black/60 group-hover/btn:text-black transition-colors uppercase tracking-wider">Call</span>
                       </a>
                       <a 
                         href={`https://wa.me/${personalInfo.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent("Hello Swarali, I would like to connect with you.")}`}
@@ -228,10 +228,10 @@ export default function App() {
                         rel="noopener noreferrer"
                         className="flex flex-col items-center gap-1 group/btn"
                       >
-                        <div className="w-8 h-8 rounded-full bg-[#111] text-white group-hover/btn:bg-black/5 group-hover/btn:text-black flex items-center justify-center transition-all duration-200">
-                          <MessageCircle className="w-4 h-4" />
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#111] text-white group-hover/btn:bg-black/5 group-hover/btn:text-black flex items-center justify-center transition-all duration-200">
+                          <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                         </div>
-                        <span className="text-[6px] sm:text-[7px] font-semibold text-black/60 group-hover/btn:text-black transition-colors uppercase tracking-wider">Whatsapp</span>
+                        <span className="text-[6px] sm:text-[8px] font-semibold text-black/60 group-hover/btn:text-black transition-colors uppercase tracking-wider">Whatsapp</span>
                       </a>
                     </div>
                   </div>
@@ -262,7 +262,7 @@ export default function App() {
                           className="flex flex-col items-center justify-center py-2.5 px-1.5 sm:py-3 sm:px-2 rounded-lg bg-black/[0.04] hover:bg-[#111] active:bg-black text-black hover:text-white transition-all duration-200 cursor-pointer -mt-[15px]"
                         >
                           <item.icon className="w-4 h-4 sm:w-5 sm:h-5 transition-colors mb-1.5" strokeWidth={2} />
-                          <span className="text-[8px] sm:text-[9px] font-semibold transition-colors text-center leading-[1.2]">{item.label}</span>
+                          <span className="text-[8px] sm:text-xs font-semibold transition-colors text-center leading-[1.2]">{item.label}</span>
                         </Component>
                       );
                     })}
@@ -270,7 +270,7 @@ export default function App() {
                   </div>
 
                   {/* Scrolling Services Ticker */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-[#111] text-white py-1.5 sm:py-2 overflow-hidden flex items-center border-t border-black/10">
+                  <div className="absolute bottom-0 left-0 right-0 bg-[#111] text-white py-1.5 sm:py-2.5 overflow-hidden flex items-center border-t border-black/10">
                     <motion.div
                       animate={{ x: [0, "-50%"] }}
                       transition={{ 
@@ -282,7 +282,7 @@ export default function App() {
                     >
                       {[...personalInfo.services, ...personalInfo.services, ...personalInfo.services, ...personalInfo.services].map((service, index) => (
                         <React.Fragment key={index}>
-                          <span className="text-[8px] sm:text-[9px] font-medium tracking-widest uppercase mx-3 sm:mx-4">{service}</span>
+                          <span className="text-[8px] sm:text-xs font-medium tracking-widest uppercase mx-3 sm:mx-4">{service}</span>
                           <div className="w-1 h-1 rounded-full bg-white/30" />
                         </React.Fragment>
                       ))}
