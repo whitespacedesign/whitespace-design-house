@@ -85,6 +85,44 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: nu
   </motion.div>
 );
 
+const playWhooshSound = () => {
+  try {
+    const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+    if (!AudioContext) return;
+    const ctx = new AudioContext();
+    
+    const noiseSize = ctx.sampleRate * 0.25; 
+    const buffer = ctx.createBuffer(1, noiseSize, ctx.sampleRate);
+    const output = buffer.getChannelData(0);
+    for (let i = 0; i < noiseSize; i++) {
+      output[i] = Math.random() * 2 - 1;
+    }
+    
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+    
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.setValueAtTime(400, ctx.currentTime);
+    filter.frequency.linearRampToValueAtTime(1200, ctx.currentTime + 0.1);
+    filter.frequency.linearRampToValueAtTime(200, ctx.currentTime + 0.25);
+    filter.Q.value = 1.5;
+    
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0, ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.15, ctx.currentTime + 0.05);
+    gain.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.25);
+    
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+    
+    noise.start();
+  } catch (e) {
+    // Ignore audio play errors
+  }
+};
+
 export default function App() {
   const [showQR, setShowQR] = useState(false);
   const [currentUrl, setCurrentUrl] = useState('');
@@ -112,14 +150,24 @@ export default function App() {
           {/* Business Card Preview */}
           <div className="mt-16 mb-8 flex flex-col items-center justify-center px-4" style={{ perspective: '1000px' }}>
             <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
               onClick={() => {
                 setIsCardFlipped(!isCardFlipped);
+                playWhooshSound();
+                if (typeof navigator !== 'undefined' && navigator.vibrate) {
+                  navigator.vibrate(40);
+                }
               }}
               whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
+              transition={{ 
+                duration: 0.8, 
+                type: "spring", 
+                stiffness: 150, 
+                damping: 20,
+                scale: { duration: 0.3 } 
+              }}
               className="w-full aspect-[1.58/1] max-w-xl relative select-none cursor-pointer group"
             >
               <AnimatePresence>
@@ -144,9 +192,20 @@ export default function App() {
               
               <motion.div
                 initial={false}
-                animate={{ rotateY: isCardFlipped ? 180 : 0 }}
-                transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
-                className="w-full h-full relative shadow-[0_15px_40px_rgba(0,0,0,0.03)]"
+                animate={{ 
+                  rotateY: isCardFlipped ? 180 : 0,
+                  z: isCardFlipped ? [0, 40, 0.01] : [0.01, 40, 0],
+                  boxShadow: isCardFlipped 
+                    ? ["0 15px 40px rgba(0,0,0,0.03)", "0 40px 80px rgba(0,0,0,0.15)", "0 15px 40px rgba(0,0,0,0.03)"]
+                    : ["0 15px 40px rgba(0,0,0,0.03)", "0 40px 80px rgba(0,0,0,0.15)", "0 15px 40px rgba(0,0,0,0.03)"]
+                }}
+                transition={{ 
+                  duration: 0.6, 
+                  rotateY: { type: "spring", stiffness: 260, damping: 20 },
+                  z: { duration: 0.6, ease: "easeInOut" },
+                  boxShadow: { duration: 0.6, ease: "easeInOut" }
+                }}
+                className="w-full h-full relative rounded-sm"
                 style={{ transformStyle: 'preserve-3d' }}
               >
                 {/* Front Side */}
@@ -296,7 +355,7 @@ export default function App() {
 
         {/* Footer */}
         <footer className="pb-28 text-center text-xs text-black/40 font-light mx-auto" style={{ height: '121px', width: '328.2px' }}>
-          <FadeIn>
+          <FadeIn delay={0.4}>
             <div className="w-12 h-px bg-black/10 mx-auto mb-3 mt-6"></div>
             <p>© 2026 Whitespace Design House All rights reserved.</p>
           </FadeIn>
