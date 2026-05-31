@@ -14,6 +14,7 @@ import {
   ChevronRight,
   MousePointerClick
 } from 'lucide-react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const personalInfo = {
   name: "Swarali Devi",
@@ -537,6 +538,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      <SpeedInsights />
     </div>
   );
 }
