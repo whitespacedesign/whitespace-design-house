@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { QRCodeSVG } from 'qrcode.react';
-import confetti from 'canvas-confetti';
 import { 
   Instagram, 
   MessageCircle, 
@@ -220,13 +219,15 @@ export default function App() {
     generateVCard();
     
     // Trigger confetti
-    confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: ['#000000', '#ffffff', '#888888'],
-      disableForReducedMotion: true
-    });
+    if (typeof (window as any).confetti !== 'undefined') {
+      (window as any).confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#000000', '#ffffff', '#888888'],
+        disableForReducedMotion: true
+      });
+    }
 
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
