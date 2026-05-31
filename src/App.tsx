@@ -157,7 +157,7 @@ export default function App() {
                 setIsCardFlipped(!isCardFlipped);
                 playWhooshSound();
                 if (typeof navigator !== 'undefined' && navigator.vibrate) {
-                  navigator.vibrate(40);
+                  navigator.vibrate([60, 50, 60]);
                 }
               }}
               whileHover={{ scale: 1.02 }}
@@ -173,19 +173,26 @@ export default function App() {
               <AnimatePresence>
                 {!isCardFlipped && (
                   <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0, transition: { delay: 1 } }}
-                    exit={{ opacity: 0, scale: 0.9, y: 10, transition: { duration: 0.2 } }}
-                    className="absolute -top-14 sm:-top-16 left-0 bg-black text-white text-xs sm:text-sm font-semibold tracking-wide px-4 py-2 sm:px-5 sm:py-2.5 rounded-full flex items-center gap-2 shadow-xl z-10"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1, duration: 0.4 }}
+                    exit={{ opacity: 0, scale: 0.9, y: -10, transition: { duration: 0.2 } }}
+                    className="absolute -bottom-14 sm:-bottom-16 left-0 z-10"
                   >
-                    <motion.div 
-                      animate={{ scale: [1, 1.2, 1] }} 
+                    <motion.div
+                      animate={{ scale: [1, 1.05, 1] }}
                       transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      className="bg-black text-white text-xs sm:text-sm font-semibold tracking-wide px-4 py-2 sm:px-5 sm:py-2.5 rounded-full flex items-center gap-2 shadow-xl relative"
                     >
-                      <MousePointerClick className="w-4 h-4 sm:w-5 sm:h-5" />
+                      <motion.div 
+                        animate={{ scale: [1, 1.2, 1] }} 
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        <MousePointerClick className="w-4 h-4 sm:w-5 sm:h-5" />
+                      </motion.div>
+                      Click to flip
+                      <div className="absolute -top-1 left-6 w-2.5 h-2.5 bg-black rotate-45" />
                     </motion.div>
-                    Click to flip
-                    <div className="absolute -bottom-1 left-6 w-2.5 h-2.5 bg-black rotate-45" />
                   </motion.div>
                 )}
               </AnimatePresence>
