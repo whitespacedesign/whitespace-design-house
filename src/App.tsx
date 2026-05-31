@@ -14,6 +14,7 @@ import {
   ChevronRight,
   MousePointerClick
 } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 
 const personalInfo = {
   name: "Swarali Devi",
@@ -537,6 +538,7 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      <Analytics />
     </div>
   );
 }
