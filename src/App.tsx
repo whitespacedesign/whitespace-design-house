@@ -207,10 +207,10 @@ export default function App() {
                     : ["0 15px 40px rgba(0,0,0,0.03)", "0 40px 80px rgba(0,0,0,0.15)", "0 15px 40px rgba(0,0,0,0.03)"]
                 }}
                 transition={{ 
-                  duration: 0.6, 
-                  rotateY: { type: "spring", stiffness: 260, damping: 20 },
-                  z: { duration: 0.6, ease: "easeInOut" },
-                  boxShadow: { duration: 0.6, ease: "easeInOut" }
+                  duration: 0.25, 
+                  rotateY: { type: "spring", stiffness: 400, damping: 25 },
+                  z: { duration: 0.25, ease: "easeInOut" },
+                  boxShadow: { duration: 0.25, ease: "easeInOut" }
                 }}
                 className="w-full h-full relative rounded-sm"
                 style={{ transformStyle: 'preserve-3d' }}
