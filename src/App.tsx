@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { QRCodeSVG } from 'qrcode.react';
+import confetti from 'canvas-confetti';
 import { 
   Instagram, 
   MessageCircle, 
@@ -123,6 +124,88 @@ const playWhooshSound = () => {
   }
 };
 
+const playHoverSound = () => {
+  try {
+    const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+    if (!AudioContext) return;
+    const ctx = new AudioContext();
+    
+    // Create soft noise
+    const noiseSize = ctx.sampleRate * 0.1;
+    const buffer = ctx.createBuffer(1, noiseSize, ctx.sampleRate);
+    const output = buffer.getChannelData(0);
+    for (let i = 0; i < noiseSize; i++) {
+        output[i] = Math.random() * 2 - 1;
+    }
+    
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+    
+    // Use bandpass filter for a low 'rustle' or 'thump'
+    const filter = ctx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.setValueAtTime(300, ctx.currentTime);
+    
+    const gain = ctx.createGain();
+    gain.gain.setValueAtTime(0, ctx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.3, ctx.currentTime + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
+    
+    noise.connect(filter);
+    filter.connect(gain);
+    gain.connect(ctx.destination);
+    
+    noise.start(ctx.currentTime);
+    noise.stop(ctx.currentTime + 0.1);
+  } catch (e) {
+    // Ignore audio play errors
+  }
+};
+
+const ParticlesBackground = () => {
+  const [particles, setParticles] = useState<any[]>([]);
+
+  useEffect(() => {
+    const newParticles = Array.from({ length: 40 }).map((_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 4 + 2,
+      duration: Math.random() * 30 + 30,
+      delay: Math.random() * -30,
+    }));
+    setParticles(newParticles);
+  }, []);
+
+  return (
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-[1]">
+      {particles.map((p) => (
+        <motion.div
+          key={p.id}
+          initial={{
+            opacity: 0,
+            left: `${p.x}vw`,
+            top: `${p.y}vh`,
+            scale: p.size / 4,
+          }}
+          animate={{
+            y: ["0vh", "-30vh", "20vh", "0vh"],
+            x: ["0vw", "15vw", "-15vw", "0vw"],
+            opacity: [0.05, 0.2, 0.05],
+          }}
+          transition={{
+            duration: p.duration,
+            repeat: Infinity,
+            ease: "linear",
+            delay: p.delay,
+          }}
+          className="absolute w-4 h-4 rounded-full bg-gray-200 blur-[1px]"
+        />
+      ))}
+    </div>
+  );
+};
+
 export default function App() {
   const [showQR, setShowQR] = useState(false);
   const [currentUrl, setCurrentUrl] = useState('');
@@ -135,14 +218,26 @@ export default function App() {
 
   const handleSaveContact = () => {
     generateVCard();
+    
+    // Trigger confetti
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ['#000000', '#ffffff', '#888888'],
+      disableForReducedMotion: true
+    });
+
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#111] font-sans selection:bg-black selection:text-white pb-24">
+    <div className="min-h-screen bg-white text-[#111] font-sans selection:bg-black selection:text-white pb-24 relative overflow-hidden">
       
-      <main className="max-w-3xl mx-auto px-6">
+      <ParticlesBackground />
+      
+      <main className="max-w-3xl mx-auto px-6 relative z-10">
         
         {/* Business Card Section */}
         <section className="pt-8 pb-12">
@@ -321,6 +416,7 @@ export default function App() {
                           onClick={(e) => {
                             if (item.onClick) item.onClick();
                           }}
+                          onMouseEnter={playHoverSound}
                           target={item.href ? "_blank" : undefined} 
                           rel={item.href ? "noopener noreferrer" : undefined}
                           whileTap={{ scale: 0.9 }}
