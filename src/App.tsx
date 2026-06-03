@@ -85,44 +85,6 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: nu
   </motion.div>
 );
 
-const playWhooshSound = () => {
-  try {
-    const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
-    if (!AudioContext) return;
-    const ctx = new AudioContext();
-    
-    const noiseSize = ctx.sampleRate * 0.25; 
-    const buffer = ctx.createBuffer(1, noiseSize, ctx.sampleRate);
-    const output = buffer.getChannelData(0);
-    for (let i = 0; i < noiseSize; i++) {
-      output[i] = Math.random() * 2 - 1;
-    }
-    
-    const noise = ctx.createBufferSource();
-    noise.buffer = buffer;
-    
-    const filter = ctx.createBiquadFilter();
-    filter.type = 'bandpass';
-    filter.frequency.setValueAtTime(400, ctx.currentTime);
-    filter.frequency.linearRampToValueAtTime(1200, ctx.currentTime + 0.1);
-    filter.frequency.linearRampToValueAtTime(200, ctx.currentTime + 0.25);
-    filter.Q.value = 1.5;
-    
-    const gain = ctx.createGain();
-    gain.gain.setValueAtTime(0, ctx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.15, ctx.currentTime + 0.05);
-    gain.gain.linearRampToValueAtTime(0, ctx.currentTime + 0.25);
-    
-    noise.connect(filter);
-    filter.connect(gain);
-    gain.connect(ctx.destination);
-    
-    noise.start();
-  } catch (e) {
-    // Ignore audio play errors
-  }
-};
-
 const playHoverSound = () => {
   try {
     const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
@@ -251,7 +213,6 @@ export default function App() {
               viewport={{ once: true }}
               onClick={() => {
                 setIsCardFlipped(!isCardFlipped);
-                playWhooshSound();
                 if (typeof navigator !== 'undefined' && navigator.vibrate) {
                   navigator.vibrate([60, 50, 60]);
                 }
