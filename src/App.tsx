@@ -196,17 +196,17 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-[#111] font-sans selection:bg-black selection:text-white pb-24 relative overflow-hidden">
+    <div className="min-h-[100dvh] flex flex-col bg-white text-[#111] font-sans selection:bg-black selection:text-white relative overflow-hidden">
       
       <ParticlesBackground />
       
-      <main className="max-w-3xl mx-auto px-6 relative z-10">
+      <main className="flex-1 w-full max-w-3xl mx-auto px-6 relative z-10 flex flex-col">
         
         {/* Business Card Section */}
-        <section className="pt-8 pb-12">
+        <section className="flex-1 flex flex-col justify-center items-center w-full py-4 sm:py-8">
 
           {/* Business Card Preview */}
-          <div className="mt-16 mb-8 flex flex-col items-center justify-center px-4" style={{ perspective: '1000px' }}>
+          <div className="w-full flex flex-col items-center justify-center px-4" style={{ perspective: '1000px' }}>
             <motion.div 
               initial={{ opacity: 0, y: 40, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -419,7 +419,7 @@ export default function App() {
         </section>
 
         {/* Footer */}
-        <footer className="pb-28 text-center text-xs text-black/40 font-light mx-auto" style={{ height: '121px', width: '328.2px' }}>
+        <footer className="shrink-0 pb-8 sm:pb-12 text-center text-xs text-black/40 font-light mx-auto w-full max-w-[328px]">
           <FadeIn delay={0.4}>
             <div className="w-12 h-px bg-black/10 mx-auto mb-3 mt-6"></div>
             <p>© 2026 Whitespace Design House All rights reserved.</p>
