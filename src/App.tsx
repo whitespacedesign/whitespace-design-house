@@ -288,7 +288,7 @@ export default function App() {
                   >
                     <Share2 className="w-4 h-4 sm:w-5 sm:h-5" />
                   </button>
-                  <div className="absolute -bottom-8 -left-8 sm:-bottom-10 sm:-left-10 md:-bottom-12 md:-left-12 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96">
+                  <div className="absolute -bottom-8 -left-8 sm:-bottom-10 sm:-left-10 md:-bottom-12 md:-left-12 w-72 h-72 sm:w-96 sm:h-96 md:w-[420px] md:h-[420px]">
                     <img 
                       src="/logo.png" 
                       alt="Logo" 
@@ -316,7 +316,7 @@ export default function App() {
                 >
                   <div className="flex-1 p-6 sm:p-8 pb-8 flex flex-col items-start justify-start w-full relative">
                     <div className="w-full flex justify-between items-start">
-                    <div className="w-[160px] h-[90px] sm:w-[210px] sm:h-[118px] pr-2 -ml-[17px] -mt-[14px] sm:-ml-[24px] sm:-mt-[20px] relative">
+                    <div className="w-[180px] h-[101px] sm:w-[240px] sm:h-[135px] pr-2 -ml-[17px] -mt-[14px] sm:-ml-[24px] sm:-mt-[20px] relative">
                       <img 
                         src="/swarali%20info.png" 
                         alt="Swarali Info" 
