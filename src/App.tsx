@@ -139,7 +139,7 @@ const ParticlesBackground = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-[1]">
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-[1] hidden sm:block">
       {particles.map((p) => (
         <motion.div
           key={p.id}
