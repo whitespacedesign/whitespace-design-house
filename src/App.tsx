@@ -228,6 +228,17 @@ export default function App() {
                   className="absolute inset-0 bg-white border border-black/10 rounded-sm overflow-hidden"
                   style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
                 >
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (!isCardFlipped) setShowQR(true);
+                    }}
+                    disabled={isCardFlipped}
+                    className={`absolute top-3 right-3 sm:top-4 sm:right-4 p-2 rounded-full hover:bg-black/5 transition-colors z-20 text-black/60 hover:text-black ${isCardFlipped ? 'pointer-events-none' : ''}`}
+                    aria-label="Share QR Code"
+                  >
+                    <Share2 className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </button>
                   <div className="absolute -bottom-8 -left-8 sm:-bottom-10 sm:-left-10 md:-bottom-12 md:-left-12 w-72 h-72 sm:w-96 sm:h-96 md:w-[420px] md:h-[420px]">
                     <img 
                       src="/logo.png" 
@@ -389,9 +400,9 @@ export default function App() {
             >
               <button 
                 onClick={() => setShowQR(false)}
-                className="absolute top-4 right-4 p-2 rounded-full hover:bg-black/5 transition-colors"
+                className="absolute top-4 right-4 flex items-center justify-center rounded-full hover:bg-black/5 transition-colors -mr-[12px] -mt-[12px] w-[26px] h-[26px]"
               >
-                <X className="w-5 h-5" />
+                <X className="w-5 h-5 mb-0" />
               </button>
               
               <div className="text-center mb-8 mt-2">
