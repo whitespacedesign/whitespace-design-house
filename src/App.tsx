@@ -338,7 +338,7 @@ export default function App() {
                           className={`flex flex-col items-center justify-center p-1 sm:p-2 text-center rounded-lg bg-black/[0.04] hover:bg-[#111] active:bg-black text-black hover:text-white transition-all duration-200 cursor-pointer -mt-[16px] sm:-mt-[20px] md:-mt-[24px] lg:-mt-[20px] h-[48px] sm:h-[56px] md:h-[65px] lg:h-[65px] w-full lg:w-[110px] lg:mx-auto ${item.label === "Instagram" ? "lg:pl-[9px]" : ""}`}
                         >
                           <item.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-[20px] lg:h-[20px] transition-colors mb-1 sm:mb-1.5 shrink-0" strokeWidth={2} />
-                          <span className="text-[7.5px] sm:text-[9.5px] md:text-xs lg:text-[13px] font-semibold transition-colors leading-[1.1] sm:leading-[1.2] lg:leading-[16.2px] truncate w-full px-0.5">{item.label}</span>
+                          <span className="text-[6.5px] sm:text-[9.5px] md:text-xs lg:text-[13px] font-semibold transition-colors leading-[1.1] sm:leading-[1.2] lg:leading-[16.2px] truncate w-full px-0.5">{item.label}</span>
                         </Component>
                       );
                     })}
