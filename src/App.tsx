@@ -85,44 +85,6 @@ const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: nu
   </motion.div>
 );
 
-const playHoverSound = () => {
-  try {
-    const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
-    if (!AudioContext) return;
-    const ctx = new AudioContext();
-    
-    // Create soft noise
-    const noiseSize = ctx.sampleRate * 0.1;
-    const buffer = ctx.createBuffer(1, noiseSize, ctx.sampleRate);
-    const output = buffer.getChannelData(0);
-    for (let i = 0; i < noiseSize; i++) {
-        output[i] = Math.random() * 2 - 1;
-    }
-    
-    const noise = ctx.createBufferSource();
-    noise.buffer = buffer;
-    
-    // Use bandpass filter for a low 'rustle' or 'thump'
-    const filter = ctx.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(300, ctx.currentTime);
-    
-    const gain = ctx.createGain();
-    gain.gain.setValueAtTime(0, ctx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.3, ctx.currentTime + 0.02);
-    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.1);
-    
-    noise.connect(filter);
-    filter.connect(gain);
-    gain.connect(ctx.destination);
-    
-    noise.start(ctx.currentTime);
-    noise.stop(ctx.currentTime + 0.1);
-  } catch (e) {
-    // Ignore audio play errors
-  }
-};
-
 const ParticlesBackground = () => {
   const [particles, setParticles] = useState<any[]>([]);
 
@@ -179,17 +141,6 @@ export default function App() {
 
   const handleSaveContact = () => {
     generateVCard();
-    
-    // Trigger confetti
-    if (typeof (window as any).confetti !== 'undefined') {
-      (window as any).confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#000000', '#ffffff', '#888888'],
-        disableForReducedMotion: true
-      });
-    }
 
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
@@ -277,17 +228,6 @@ export default function App() {
                   className="absolute inset-0 bg-white border border-black/10 rounded-sm overflow-hidden"
                   style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
                 >
-                  <button 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      if (!isCardFlipped) setShowQR(true);
-                    }}
-                    disabled={isCardFlipped}
-                    className={`absolute top-3 right-3 sm:top-4 sm:right-4 p-2 rounded-full hover:bg-black/5 transition-colors z-20 text-black/60 hover:text-black ${isCardFlipped ? 'pointer-events-none' : ''}`}
-                    aria-label="Share QR Code"
-                  >
-                    <Share2 className="w-4 h-4 sm:w-5 sm:h-5" />
-                  </button>
                   <div className="absolute -bottom-8 -left-8 sm:-bottom-10 sm:-left-10 md:-bottom-12 md:-left-12 w-72 h-72 sm:w-96 sm:h-96 md:w-[420px] md:h-[420px]">
                     <img 
                       src="/logo.png" 
@@ -378,7 +318,7 @@ export default function App() {
                           onClick={(e) => {
                             if (item.onClick) item.onClick();
                           }}
-                          onMouseEnter={playHoverSound}
+
                           target={item.href ? "_blank" : undefined} 
                           rel={item.href ? "noopener noreferrer" : undefined}
                           whileTap={{ scale: 0.9 }}
