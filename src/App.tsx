@@ -267,9 +267,9 @@ export default function App() {
                     transform: 'rotateY(180deg)' 
                   }}
                 >
-                  <div className="flex-1 p-6 sm:p-8 pb-8 flex flex-col items-start justify-start w-full relative">
+                  <div className="flex-1 p-5 sm:p-7 md:p-8 pb-8 flex flex-col items-start justify-start w-full relative">
                     <div className="w-full flex justify-between items-start">
-                    <div className="w-[180px] h-[101px] sm:w-[240px] sm:h-[135px] pr-2 -ml-[17px] -mt-[14px] sm:-ml-[24px] sm:-mt-[20px] relative">
+                    <div className="w-[160px] h-[90px] sm:w-[220px] sm:h-[123px] md:w-[260px] md:h-[146px] pr-2 -ml-[14px] -mt-[12px] sm:-ml-[20px] sm:-mt-[16px] md:-ml-[24px] md:-mt-[20px] relative">
                       <img 
                         src="/swarali%20info.png" 
                         alt="Swarali Info" 
@@ -286,17 +286,17 @@ export default function App() {
                     </div>
                     
                     <div 
-                      className="flex gap-3 mt-1 mr-1" 
+                      className="flex gap-2.5 sm:gap-3 mt-1 mr-1" 
                       onClick={(e) => e.stopPropagation()}
                     >
                       <a 
                         href={`tel:${personalInfo.phone}`}
                         className="flex flex-col items-center gap-1 group/btn"
                       >
-                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#111] text-white group-hover/btn:bg-black/5 group-hover/btn:text-black flex items-center justify-center transition-all duration-200">
-                          <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full bg-[#111] text-white group-hover/btn:bg-black/5 group-hover/btn:text-black flex items-center justify-center transition-all duration-200">
+                          <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
                         </div>
-                        <span className="text-[6px] sm:text-[8px] font-semibold text-black/60 group-hover/btn:text-black transition-colors uppercase tracking-wider">Call</span>
+                        <span className="text-[6px] sm:text-[7px] md:text-[8px] font-semibold text-black/60 group-hover/btn:text-black transition-colors uppercase tracking-wider">Call</span>
                       </a>
                       <a 
                         href={`https://wa.me/${personalInfo.whatsapp.replace(/\D/g, '')}?text=${encodeURIComponent("Hello Swarali, I would like to connect with you.")}`}
@@ -304,17 +304,17 @@ export default function App() {
                         rel="noopener noreferrer"
                         className="flex flex-col items-center gap-1 group/btn"
                       >
-                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#111] text-white group-hover/btn:bg-black/5 group-hover/btn:text-black flex items-center justify-center transition-all duration-200">
-                          <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-full bg-[#111] text-white group-hover/btn:bg-black/5 group-hover/btn:text-black flex items-center justify-center transition-all duration-200">
+                          <MessageCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
                         </div>
-                        <span className="text-[6px] sm:text-[8px] font-semibold text-black/60 group-hover/btn:text-black transition-colors uppercase tracking-wider">Whatsapp</span>
+                        <span className="text-[6px] sm:text-[7px] md:text-[8px] font-semibold text-black/60 group-hover/btn:text-black transition-colors uppercase tracking-wider">Whatsapp</span>
                       </a>
                     </div>
                   </div>
 
                   {/* Connect Buttons inside Card */}
                   <div 
-                    className="w-full mt-auto mb-14 sm:mb-12 pt-4 grid grid-cols-4 gap-2 sm:gap-4 lg:gap-6 z-10" 
+                    className="w-full mt-auto mb-12 sm:mb-12 md:mb-14 lg:mb-14 pt-4 grid grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6 z-10 px-0 sm:px-2 md:px-0" 
                     onClick={(e) => e.stopPropagation()}
                   >
                     {[
@@ -323,23 +323,22 @@ export default function App() {
                       { icon: HardDrive, label: "Works", href: personalInfo.drive },
                       { icon: Download, label: "Save contact", onClick: handleSaveContact }
                     ].map((item) => {
-                      const Component = item.onClick ? motion.button : motion.a;
+                      const Component = item.onClick ? motion.button : motion.a as any;
                       return (
                         <Component 
                           key={item.label}
                           href={item.href}
-                          onClick={(e) => {
+                          onClick={(e: React.MouseEvent) => {
                             if (item.onClick) item.onClick();
                           }}
-
                           target={item.href ? "_blank" : undefined} 
                           rel={item.href ? "noopener noreferrer" : undefined}
                           whileTap={{ scale: 0.9 }}
                           whileHover={{ scale: 1.05 }}
-                          className={`flex flex-col items-center justify-center py-2.5 px-1.5 sm:py-3 sm:px-2 rounded-lg bg-black/[0.04] hover:bg-[#111] active:bg-black text-black hover:text-white transition-all duration-200 cursor-pointer -mt-[22px] h-[48px] sm:h-[52px] lg:h-[65px] lg:w-[110px] lg:mx-auto lg:-mt-[20px] ${item.label === "Instagram" ? "lg:pl-[9px]" : ""}`}
+                          className={`flex flex-col items-center justify-center p-1 sm:p-2 text-center rounded-lg bg-black/[0.04] hover:bg-[#111] active:bg-black text-black hover:text-white transition-all duration-200 cursor-pointer -mt-[16px] sm:-mt-[20px] md:-mt-[24px] lg:-mt-[20px] h-[48px] sm:h-[56px] md:h-[65px] lg:h-[65px] w-full lg:w-[110px] lg:mx-auto ${item.label === "Instagram" ? "lg:pl-[9px]" : ""}`}
                         >
-                          <item.icon className="w-[14px] h-[14px] sm:w-5 sm:h-5 lg:w-[20px] lg:h-[20px] transition-colors mb-1.5 lg:mb-1" strokeWidth={2} />
-                          <span className="text-[8px] sm:text-xs lg:text-[13px] font-semibold transition-colors text-center leading-[1.2] lg:leading-[16.2px]">{item.label}</span>
+                          <item.icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-[20px] lg:h-[20px] transition-colors mb-1 sm:mb-1.5 shrink-0" strokeWidth={2} />
+                          <span className="text-[7.5px] sm:text-[9.5px] md:text-xs lg:text-[13px] font-semibold transition-colors leading-[1.1] sm:leading-[1.2] lg:leading-[16.2px] truncate w-full px-0.5">{item.label}</span>
                         </Component>
                       );
                     })}
