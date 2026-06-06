@@ -323,7 +323,7 @@ export default function App() {
                           rel={item.href ? "noopener noreferrer" : undefined}
                           whileTap={{ scale: 0.9 }}
                           whileHover={{ scale: 1.05 }}
-                          className="flex flex-col items-center justify-center py-2.5 px-1.5 sm:py-3 sm:px-2 rounded-lg bg-black/[0.04] hover:bg-[#111] active:bg-black text-black hover:text-white transition-all duration-200 cursor-pointer -mt-[15px]"
+                          className="flex flex-col items-center justify-center py-2.5 px-1.5 sm:py-3 sm:px-2 rounded-lg bg-black/[0.04] hover:bg-[#111] active:bg-black text-black hover:text-white transition-all duration-200 cursor-pointer -mt-[22px] h-[52px]"
                         >
                           <item.icon className="w-4 h-4 sm:w-5 sm:h-5 transition-colors mb-1.5" strokeWidth={2} />
                           <span className="text-[8px] sm:text-xs font-semibold transition-colors text-center leading-[1.2]">{item.label}</span>
