@@ -45,9 +45,8 @@ EMAIL;TYPE=WORK:${personalInfo.email}
 URL:${window.location.origin}
 END:VCARD`;
 
-  // Check if the device is iOS or Android
+  // Check if the device is iOS
   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  const isAndroid = /Android/i.test(navigator.userAgent);
 
   if (isIOS) {
     // For iOS, a data URI with target="_blank" is often the most reliable way to trigger the native Contacts app
@@ -59,17 +58,11 @@ END:VCARD`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  } else if (isAndroid) {
-    // For Android, an Intent URI bypasses the "File Downloaded" step and directly opens the Contacts Add screen.
-    const intentUrl = `intent:#Intent;action=android.intent.action.INSERT;type=vnd.android.cursor.dir/contact;S.name=${encodeURIComponent(personalInfo.name)};S.phone=${encodeURIComponent(personalInfo.phone)};S.email=${encodeURIComponent(personalInfo.email)};S.company=${encodeURIComponent(personalInfo.company)};end;`;
-    const link = document.createElement('a');
-    link.href = intentUrl;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   } else {
-    // Desktop fallback
-    const blob = new Blob([vCardData], { type: 'text/vcard;charset=utf-8;' });
+    // For Android and Desktop, we create a Blob and download it.
+    // Note: Due to browser security restrictions, auto-opening downloaded files silently is blocked.
+    // The user will see a standard system download prompt and can tap "Open" to add to Contacts.
+    const blob = new Blob([vCardData], { type: 'text/x-vcard;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
