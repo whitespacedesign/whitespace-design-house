@@ -334,10 +334,10 @@ export default function App() {
                           rel={item.href ? "noopener noreferrer" : undefined}
                           whileTap={{ scale: 0.9 }}
                           whileHover={{ scale: 1.05 }}
-                          className="flex flex-col items-center justify-center py-2.5 px-1.5 sm:py-3 sm:px-2 rounded-lg bg-black/[0.04] hover:bg-[#111] active:bg-black text-black hover:text-white transition-all duration-200 cursor-pointer -mt-[22px] h-[52px] lg:h-[65px] lg:-mt-[28px]"
+                          className="flex flex-col items-center justify-center py-2.5 px-1.5 sm:py-3 sm:px-2 rounded-lg bg-black/[0.04] hover:bg-[#111] active:bg-black text-black hover:text-white transition-all duration-200 cursor-pointer -mt-[22px] h-[52px] lg:h-[110px] lg:-mt-[45px] lg:gap-1"
                         >
-                          <item.icon className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 transition-colors mb-1.5 lg:mb-2" strokeWidth={2} />
-                          <span className="text-[8px] sm:text-xs lg:text-sm font-semibold transition-colors text-center leading-[1.2]">{item.label}</span>
+                          <item.icon className="w-[9px] h-[9px] sm:w-5 sm:h-5 lg:w-10 lg:h-10 transition-colors mb-1.5 lg:mb-2" strokeWidth={2} />
+                          <span className="text-[8px] sm:text-xs lg:text-base font-semibold transition-colors text-center leading-[1.2]">{item.label}</span>
                         </Component>
                       );
                     })}
