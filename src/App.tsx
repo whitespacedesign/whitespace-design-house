@@ -334,10 +334,10 @@ export default function App() {
                           rel={item.href ? "noopener noreferrer" : undefined}
                           whileTap={{ scale: 0.9 }}
                           whileHover={{ scale: 1.05 }}
-                          className="flex flex-col items-center justify-center py-2.5 px-1.5 sm:py-3 sm:px-2 rounded-lg bg-black/[0.04] hover:bg-[#111] active:bg-black text-black hover:text-white transition-all duration-200 cursor-pointer -mt-[22px] h-[52px] lg:h-[110px] lg:-mt-[45px] lg:gap-1"
+                          className="flex flex-col items-center justify-center py-2.5 px-1.5 sm:py-3 sm:px-2 rounded-lg bg-black/[0.04] hover:bg-[#111] active:bg-black text-black hover:text-white transition-all duration-200 cursor-pointer -mt-[22px] h-[52px] lg:h-[80px] lg:w-[80px] lg:mx-auto lg:-mt-[20px]"
                         >
-                          <item.icon className="w-[14px] h-[14px] sm:w-5 sm:h-5 lg:w-10 lg:h-10 transition-colors mb-1.5 lg:mb-2" strokeWidth={2} />
-                          <span className="text-[8px] sm:text-xs lg:text-base font-semibold transition-colors text-center leading-[1.2]">{item.label}</span>
+                          <item.icon className="w-[14px] h-[14px] sm:w-5 sm:h-5 lg:w-10 lg:h-10 transition-colors mb-1.5 lg:mb-1" strokeWidth={2} />
+                          <span className="text-[8px] sm:text-xs lg:text-[13px] font-semibold transition-colors text-center leading-[1.2] lg:leading-[16.2px]">{item.label}</span>
                         </Component>
                       );
                     })}
